@@ -10,6 +10,19 @@ import userRouter from './routes/user.routes.js';
 //
 import createRoles from './libs/createRoles.js';
 createRoles();
+import fetch from 'node-fetch';
+
+const logMyIP = async () => {
+  try {
+    const res = await fetch('https://api.ipify.org?format=json');
+    const data = await res.json();
+    console.log("🔍 IP pública del servidor:", data.ip);
+  } catch (err) {
+    console.error("Error obteniendo la IP:", err);
+  }
+};
+
+logMyIP();
 app.use(cors({
     origin: process.env.URL_fRONT,
     credentials: true // si estás usando cookies o cabeceras de autenticación
